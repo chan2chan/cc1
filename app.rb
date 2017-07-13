@@ -48,7 +48,8 @@ end
 post '/callback' do
   body = request.body.read
 
-  unless client.validate_signature(body, request.env['HTTP_X_LINE_SIGNATURE'])
+  signature = request.env['HTTP_X_LINE_SIGNATURE']
+  unless client.validate_signature(body, signature)
     error 400 do 'Bad Request' end
   end
 
@@ -58,21 +59,6 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-          
-          message = [{
-          type: 'text',
-          text: '追加してくれてありがと！'
-        },
-        {
-          type: 'text',
-          text: event['source']['userId']
-        }]
-          client.reply_message(event['replyToken'], message)
-          
-    response = client.push_message(userId, message)
-    p "#{response.code} #{response.body}"
-          
-          
         message = {
           type: 'text',
           text: event.message['text']
@@ -82,29 +68,7 @@ post '/callback' do
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
         tf.write(response.body)
-           message = [{
-          type: 'text',
-          text: '追加してくれてありがと！'
-        },
-        {
-          type: 'text',
-          text: event['source']['userId']
-        }]
-          client.reply_message(event['replyToken'], message)
       end
-    when Line::Bot::Event::Follow
-        message = [{
-          type: 'text',
-          text: '追加してくれてありがと！'
-        },
-        {
-          type: 'text',
-          text: event['source']['userId']
-        }]
-        File.open("friends.txt", "a") do |f|
-            f.puts event['source']['userId']+"\n"
-        end
-        client.reply_message(event['replyToken'], message)
     end
   }
 

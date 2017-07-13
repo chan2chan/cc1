@@ -77,7 +77,7 @@ post '/callback' do
           type: 'text',
           text: event['source']['userId']
         }]
-        File.open("friend.txt", "a") do |f|
+        File.open("friends.txt", "a") do |f|
             f.puts event['source']['userId']+"\n"
         end
         client.reply_message(event['replyToken'], message)

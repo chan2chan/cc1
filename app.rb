@@ -48,7 +48,13 @@ end
 post '/callback' do
   body = request.body.read
 
-  signature = request.env['HTTP_X_LINE_SIGNATURE']
+  CHANNEL_SECRET =  ENV["LINE_CHANNEL_SECRET"] # Channel secret string
+http_request_body = request.raw_post # Request body string
+hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, CHANNEL_SECRET, http_request_body)
+signature = Base64.strict_encode64(hash)
+# Compare X-Line-Signature request header string and the signature  
+    
+  #signature = request.env['HTTP_X_LINE_SIGNATURE']
   unless client.validate_signature(body, signature)
     error 400 do 'Bad Request' end
   end

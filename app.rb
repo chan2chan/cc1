@@ -55,7 +55,8 @@ signature = Base64.strict_encode64(hash)
 # Compare X-Line-Signature request header string and the signature  
  message = {
           type: 'text',
-          text: get_user_local_bot_reply(event.message['text'])
+          #text: get_user_local_bot_reply(event.message['text'])
+            text: 'test'
         }
         client.reply_message(event['replyToken'], message)   
   #signature = request.env['HTTP_X_LINE_SIGNATURE']

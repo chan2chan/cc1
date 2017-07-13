@@ -58,6 +58,21 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+          
+          message = [{
+          type: 'text',
+          text: '追加してくれてありがと！'
+        },
+        {
+          type: 'text',
+          text: event['source']['userId']
+        }]
+          client.reply_message(event['replyToken'], message)
+          
+    response = client.push_message(userId, message)
+    p "#{response.code} #{response.body}"
+          
+          
         message = {
           type: 'text',
           text: event.message['text']

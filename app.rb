@@ -15,7 +15,7 @@ get '/list/friends' do
 end
 
 get '/test/push' do
-#    userId = ENV["LINE_TEST_USER_ID"]
+    userId = ENV["LINE_TEST_USER_ID"]
     message = {
         type: 'text',
         text: 'အွန်လိုင်းအမှာစာတစ်ဆောင် လက္ခံရရှိပါတယ် ခင်ည'

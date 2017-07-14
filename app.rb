@@ -18,7 +18,7 @@ get '/test/push' do
     userId = ENV["LINE_TEST_USER_ID"]
     message = {
         type: 'text',
-        text: 'အွန်လိုင်းအမှာစာတစ်ဆောင် လက္ခံရရှိပါတယ် ခင်ည'
+        text: 'အွန်လိုင်းအမှာစာတစ်ဆောင် လက္ခံရရှိပါတယ် ခင်ညd'
     }
     response = client.push_message(userId, message)
     p "#{response.code} #{response.body}"

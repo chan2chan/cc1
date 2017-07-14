@@ -26,7 +26,7 @@ end
 
 get '/test/profile' do
     #userId = ENV["LINE_TEST_USER_ID"]
-    response = client.get_profile("U37f0f08f0620b7ee7218f5d46c129aee")
+    response = client.get_profile("Uc9ae57d28bf74cc4026fd156fd470bb0")
     case response
     when Net::HTTPSuccess then
         contact = JSON.parse(response.body)

@@ -33,9 +33,8 @@ get '/test/profile' do
         contact = JSON.parse(response.body)
         p contact['displayName']
         p contact['pictureUrl']
-        p contact['statusMessage']
-        #cc =p contact['displayName']
-        puts #cc
+        p contact['statusMessage'] 
+        p 'success'
     else
         p "#{response.code} #{response.body}"
     end

@@ -10,7 +10,7 @@ get '/list/friends' do
     File.open("friend.txt", "r") do |f|
         f.each_line { |line|
             puts line
-             'hello friends'
+             "hello friends"
         }
     end
 end

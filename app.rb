@@ -34,6 +34,8 @@ get '/test/profile' do
         p contact['displayName']
         p contact['pictureUrl']
         p contact['statusMessage']
+        #cc =p contact['displayName']
+        puts #cc
     else
         p "#{response.code} #{response.body}"
     end

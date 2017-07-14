@@ -34,7 +34,7 @@ get '/test/profile' do
         p contact['displayName']
         p contact['pictureUrl']
         p contact['statusMessage'] 
-        p "success contact['displayName']" # contact['displayName']
+        p "success contact" # contact['displayName']
     else
         p "#{response.code} #{response.body}"
         p "fail"
